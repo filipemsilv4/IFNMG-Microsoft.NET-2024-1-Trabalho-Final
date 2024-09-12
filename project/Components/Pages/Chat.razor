@@ -1,0 +1,49 @@
+﻿@page "/"
+@using MudBlazor
+
+<PageTitle>Home</PageTitle>
+
+<MudCard>
+    <MudCardContent style="height: 85vh;">
+        @foreach (var message in chatMessages)
+        {
+            <MudText>
+                @message.Content
+            </MudText>
+        }
+    </MudCardContent>
+    <MudCardActions>
+        <MudContainer>
+            <MudTextField @bind-Value="currentMessage" T="string" Placeholder="Mensagem" Variant="Variant.Filled">
+            </MudTextField>
+            <MudContainer style="display: flex; 
+                                justify-content: flex-end; 
+                                gap: 5px;">
+                <MudIconButton OnClick="addChat" Icon="@Icons.Material.Outlined.Send"
+                    Variant="Variant.Outlined" style="width: 75px;">
+                </MudIconButton>
+                <MudIconButton Icon="@Icons.Material.Outlined.FileUpload" Variant="Variant.Outlined"
+                    style="width: 75px;"></MudIconButton>
+            </MudContainer>
+        </MudContainer>
+    </MudCardActions>
+</MudCard>
+
+@code {
+
+    private string? currentMessage;
+    private List<ChatMessage> chatMessages = new List<ChatMessage>();
+
+    private void addChat()
+    {
+        chatMessages.Add(new ChatMessage { Content = currentMessage });
+        Console.WriteLine(currentMessage);
+        currentMessage = string.Empty;
+    }
+
+    private class ChatMessage
+    {
+        public string? Content { get; set; }
+    }
+
+}
