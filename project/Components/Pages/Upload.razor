@@ -1,0 +1,94 @@
+@rendermode InteractiveServer // Needed for interactive components!!!
+@page "/upload"
+@using MudBlazor
+
+<PageTitle>Upload</PageTitle>
+
+<style>
+    .mud-card-content {
+        overflow-y: auto;
+        height: 50vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+    }
+
+    .hover-text {
+        font-size: 40px;
+        font-family: fantasy;
+    }
+
+    .hover-letter {
+        display: inline-block;
+        transition: transform 0.3s ease;
+    }
+
+    .hover-letter:hover {
+        transform: scale(2);
+        color: darkgrey;
+        font-family: cursive;
+        transform: translateX(-10px) rotate(-10deg) translateY(-10px);
+    }
+
+    .centered {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+</style>
+
+<MudCard Class="mud-card" Elevation="5">
+    <MudCardContent Class="mud-card-content">
+        <MudProgressLinear Color="Color.Primary" Striped="true" Size="Size.Large" Value="50" Class="my-7"
+            Style="width: 100vh;" />
+        <MudPaper Class="my-2 p-2" Elevation="0">
+            <MudText Class="hover-text" Typo="Typo.body1">
+                @foreach (var letter in "FAÇA UPLOAD DO MATERIAL USADO NA DISCIPLINA".ToCharArray())
+                {
+                    @if (letter == ' ')
+                    {
+                        <span>&nbsp;</span>
+                    }
+                    else
+                    {
+                        <span class="hover-letter">@letter</span>
+                    }
+                }
+            </MudText>
+        </MudPaper>
+    </MudCardContent>
+    <MudCardActions Class="justify-center mud-card-actions">
+        <MudForm>
+
+            <MudFileUpload Class="centered" T="IBrowserFile" FilesChanged="UploadFiles">
+                <ActivatorContent>
+                    <MudFab Color="Color.Success" StartIcon="@Icons.Material.Filled.Add" />
+
+                </ActivatorContent>
+            </MudFileUpload>
+            <MudIconButton Icon="@Icons.Material.Outlined.Send"></MudIconButton>
+            @if (files != null)
+            {
+                <MudText Class="centered" Typo="@Typo.h6">@files.Count() File@(files.Count() == 1 ? "" : "s"):</MudText>
+                <MudList T="string">
+                    @foreach (var file in files)
+                    {
+                        <MudListItem Icon="@Icons.Material.Filled.AttachFile" @key="@file">
+                            @file.Name <code>@file.Size bytes</code>
+                        </MudListItem>
+                    }
+                </MudList>
+            }
+        </MudForm>
+    </MudCardActions>
+</MudCard>
+
+@code
+{
+    private IList<IBrowserFile> files = new List<IBrowserFile>();
+    private void UploadFiles(IBrowserFile file)
+    {
+        files.Add(file);
+    }
+}
