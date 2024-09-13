@@ -1,49 +1,63 @@
-﻿@page "/"
+﻿@rendermode InteractiveServer // Needed for interactive components!!!
+@page "/"
 @using MudBlazor
 
-<PageTitle>Home</PageTitle>
+<PageTitle>Chat</PageTitle>
 
 <MudCard>
-    <MudCardContent style="height: 85vh;">
+    <MudCardContent Style="height: 70vh; overflow-y: auto;">
         @foreach (var message in chatMessages)
         {
-            <MudText>
-                @message.Content
-            </MudText>
+            <MudPaper Class="my-2 p-2" Elevation="0">
+                <MudText Typo="Typo.body1">@message.Content</MudText>
+            </MudPaper>
         }
     </MudCardContent>
     <MudCardActions>
-        <MudContainer>
-            <MudTextField @bind-Value="currentMessage" T="string" Placeholder="Mensagem" Variant="Variant.Filled">
-            </MudTextField>
-            <MudContainer style="display: flex; 
-                                justify-content: flex-end; 
-                                gap: 5px;">
-                <MudIconButton OnClick="addChat" Icon="@Icons.Material.Outlined.Send"
-                    Variant="Variant.Outlined" style="width: 75px;">
-                </MudIconButton>
-                <MudIconButton Icon="@Icons.Material.Outlined.FileUpload" Variant="Variant.Outlined"
-                    style="width: 75px;"></MudIconButton>
-            </MudContainer>
-        </MudContainer>
+        <MudForm @ref="form">
+            <MudTextField @bind-Value="currentMessage" 
+                          T="string" 
+                          Label="Message" 
+                          Variant="Variant.Outlined"
+                          Adornment="Adornment.End" 
+                          AdornmentIcon="@Icons.Material.Filled.Send" 
+                          OnAdornmentClick="AddChat" 
+                          OnKeyDown="@(e => Enter(e))"
+                          Required="true"
+                          RequiredError="Message is required!" />
+        </MudForm>
     </MudCardActions>
 </MudCard>
 
 @code {
+    private string currentMessage = "";
+    private List<ChatMessage> chatMessages = new();
+    private MudForm? form;
 
-    private string? currentMessage;
-    private List<ChatMessage> chatMessages = new List<ChatMessage>();
-
-    private void addChat()
+    private void AddChat()
     {
-        chatMessages.Add(new ChatMessage { Content = currentMessage });
+        // Log the message to the console
         Console.WriteLine(currentMessage);
-        currentMessage = string.Empty;
+
+        form?.Validate();
+        if (!string.IsNullOrWhiteSpace(currentMessage))
+        {
+            chatMessages.Add(new ChatMessage { Content = currentMessage });
+            currentMessage = "";  // Limpar o campo após o envio da mensagem
+            StateHasChanged();    // Forçar a atualização da interface
+        }
+    }
+
+    private void Enter(KeyboardEventArgs e)
+    {
+        if (e.Key == "Enter" && !e.ShiftKey) // Verifica se Enter foi pressionado sem Shift
+        {
+            AddChat();
+        }
     }
 
     private class ChatMessage
     {
-        public string? Content { get; set; }
+        public string Content { get; set; } = "";
     }
-
 }
