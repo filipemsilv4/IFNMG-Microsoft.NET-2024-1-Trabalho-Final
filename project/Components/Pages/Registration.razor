@@ -1,0 +1,57 @@
+@rendermode InteractiveServer // Needed for interactive components!!!
+@page "/registration"
+@using MudBlazor
+@using UserLogin
+
+<style>
+    .card-container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+    }
+
+    .mud-card {
+        width: 75vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .mud-form {
+        width: 45vh;
+    }
+</style>
+
+<div class="card-container">
+    <MudCard Class="mud-card" Elevation="5">
+        <MudCardContent Class="mud-card-content">
+            <MudForm Class="mud-form">
+                <MudTextField T="string" Label="E-mail" InputType="InputType.Email" Required="true" Format="">
+                </MudTextField>
+
+                <MudTextField T="string" Label="Username" Required="true"></MudTextField>
+
+                <MudTextField T="string" Label="Password" InputType="InputType.Password" Required="true"
+                    @bind-Value="u.Password"></MudTextField>
+                <MudTextField T="string" Label="Password" InputType="InputType.Password"
+                    HelperText="Repeat the password" Required="true"></MudTextField>
+
+                <MudTextField T="string" Label="Phone" InputType="InputType.Telephone" Required="true"></MudTextField>
+
+                <MudTextField T="string" Label="First Name" Required="true"></MudTextField>
+
+                <MudTextField T="string" Label="Last Name" Required="true"></MudTextField>
+
+            </MudForm>
+        </MudCardContent>
+        <MudCardActions>
+            <MudIconButton Icon="@Icons.Material.Outlined.AppRegistration" Color="Color.Success" OnClick="u.Click">
+            </MudIconButton>
+        </MudCardActions>
+    </MudCard>
+</div>
+
+@code {
+    private User u = new();
+}

@@ -1,6 +1,7 @@
 ﻿@rendermode InteractiveServer // Needed for interactive components!!!
 @page "/"
 @using MudBlazor
+@using ChatUser
 @inject NavigationManager NavigationManager
 
 <PageTitle>Chat</PageTitle>
@@ -88,10 +89,5 @@
         {
             AddChat();
         }
-    }
-
-    private class ChatMessage
-    {
-        public string Content { get; set; } = "";
     }
 }

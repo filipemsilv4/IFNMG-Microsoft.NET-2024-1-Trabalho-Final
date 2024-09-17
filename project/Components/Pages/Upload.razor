@@ -94,7 +94,7 @@
     {
         files.Add(file);
     }
-    private string message = "";
+    private string? message = String.Empty;
     protected override void OnInitialized()
     {
         var uri = NavigationManager.ToAbsoluteUri(NavigationManager.Uri);

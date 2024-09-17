@@ -1,0 +1,54 @@
+@rendermode InteractiveServer // Needed for interactive components!!!
+@page "/login"
+@using MudBlazor
+
+<style>
+    .card-container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+    }
+
+    .mud-card {
+        width: 75vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .mud-form {
+        width: 45vh;
+    }
+</style>
+
+<div class="card-container">
+    <MudCard Class="mud-card" Elevation="5">
+        <MudCardContent Class="mud-card-content">
+            <MudForm Class="mud-form">
+                <MudTextField T="string" Label="Username/E-mail"></MudTextField>
+                <MudTextField T="string" Label="Password"></MudTextField>
+            </MudForm>
+        </MudCardContent>
+        <MudCardActions>
+            <MudIconButton Icon="@Icons.Material.Outlined.Login" Color="Color.Success"></MudIconButton>
+        </MudCardActions>
+    </MudCard>
+</div>
+
+@code {
+    
+    private class Credential {
+        public string? Username {get;set;}
+        private string? Email {get;set;}
+        public string? Password {get;set;}
+
+    }
+
+    private class User : Credential {
+        private string? FirstName {get;set;}
+        private string? LastName {get;set;}
+        private string? Phone {get;set;}
+
+    }
+}
