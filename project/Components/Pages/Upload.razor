@@ -1,6 +1,8 @@
 @rendermode InteractiveServer // Needed for interactive components!!!
 @page "/upload"
 @using MudBlazor
+@using Microsoft.AspNetCore.WebUtilities
+@inject NavigationManager NavigationManager
 
 <PageTitle>Upload</PageTitle>
 
@@ -38,6 +40,7 @@
     }
 </style>
 
+@* <p>Prompt received: @message</p> *@
 <MudCard Class="mud-card" Elevation="5">
     <MudCardContent Class="mud-card-content">
         <MudProgressLinear Color="Color.Primary" Striped="true" Size="Size.Large" Value="50" Class="my-7"
@@ -90,5 +93,14 @@
     private void UploadFiles(IBrowserFile file)
     {
         files.Add(file);
+    }
+    private string message = "";
+    protected override void OnInitialized()
+    {
+        var uri = NavigationManager.ToAbsoluteUri(NavigationManager.Uri);
+        if (QueryHelpers.ParseQuery(uri.Query).TryGetValue("message", out var messageParam))
+        {
+            message = messageParam.First();
+        }
     }
 }

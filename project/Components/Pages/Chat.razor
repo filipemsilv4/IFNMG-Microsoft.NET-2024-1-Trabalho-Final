@@ -1,6 +1,7 @@
 ﻿@rendermode InteractiveServer // Needed for interactive components!!!
 @page "/"
 @using MudBlazor
+@inject NavigationManager NavigationManager
 
 <PageTitle>Chat</PageTitle>
 
@@ -68,17 +69,16 @@
     private List<ChatMessage> chatMessages = new();
     private MudForm? form;
 
-    private void AddChat()
-    {
-        // Log the message to the console
-        Console.WriteLine(currentMessage);
-
+    private void AddChat(){
         form?.Validate();
-        if (!string.IsNullOrWhiteSpace(currentMessage))
-        {
+        if (!string.IsNullOrWhiteSpace(currentMessage)){
             chatMessages.Add(new ChatMessage { Content = currentMessage });
-            currentMessage = ""; // Limpar o campo após o envio da mensagem
-            StateHasChanged(); // Forçar a atualização da interface
+            
+            // Navegar para a página Upload.razor com o parâmetro de consulta
+            NavigationManager.NavigateTo($"/upload?message={Uri.EscapeDataString(currentMessage)}");
+            
+            currentMessage = "";
+            StateHasChanged();
         }
     }
 

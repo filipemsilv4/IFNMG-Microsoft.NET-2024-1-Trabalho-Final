@@ -1,27 +1,25 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Brunin\\Documents\\dotnet-ifnmg\\IFNMG-Microsoft.NET-2024-1-Trabalho-Final\\project\\project.csproj": {}
+    "/Users/filiPC/Developer/GitHub/IFNMG-Microsoft.NET-2024-1-Trabalho-Final/project/project.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Brunin\\Documents\\dotnet-ifnmg\\IFNMG-Microsoft.NET-2024-1-Trabalho-Final\\project\\project.csproj": {
+    "/Users/filiPC/Developer/GitHub/IFNMG-Microsoft.NET-2024-1-Trabalho-Final/project/project.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Brunin\\Documents\\dotnet-ifnmg\\IFNMG-Microsoft.NET-2024-1-Trabalho-Final\\project\\project.csproj",
+        "projectUniqueName": "/Users/filiPC/Developer/GitHub/IFNMG-Microsoft.NET-2024-1-Trabalho-Final/project/project.csproj",
         "projectName": "project",
-        "projectPath": "C:\\Users\\Brunin\\Documents\\dotnet-ifnmg\\IFNMG-Microsoft.NET-2024-1-Trabalho-Final\\project\\project.csproj",
-        "packagesPath": "C:\\Users\\Brunin\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Brunin\\Documents\\dotnet-ifnmg\\IFNMG-Microsoft.NET-2024-1-Trabalho-Final\\project\\obj\\",
+        "projectPath": "/Users/filiPC/Developer/GitHub/IFNMG-Microsoft.NET-2024-1-Trabalho-Final/project/project.csproj",
+        "packagesPath": "/Users/filiPC/.nuget/packages/",
+        "outputPath": "/Users/filiPC/Developer/GitHub/IFNMG-Microsoft.NET-2024-1-Trabalho-Final/project/obj/",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\Brunin\\AppData\\Roaming\\NuGet\\NuGet.Config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+          "/Users/filiPC/.nuget/NuGet/NuGet.Config"
         ],
         "originalTargetFrameworks": [
           "net8.0"
         ],
         "sources": {
-          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
@@ -69,7 +67,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.202/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/8.0.201/PortableRuntimeIdentifierGraph.json"
         }
       }
     }
